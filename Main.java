@@ -9,8 +9,8 @@ import com.sun.net.httpserver.HttpContext;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        //test the DB connection
-        SQLite.connect();
+        //Set up the database
+        SQLite.withConnection(Database.makeTable);
         
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
         HttpContext context = server.createContext("/", new MyHandler());
