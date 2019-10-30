@@ -7,6 +7,8 @@ public class Database {
             + "id text PRIMARY KEY,"
             + "payload text NOT NULL"
             + ")";
-        return SQLite.executeStatement(conn, command);
+        boolean success = SQLite.executeStatement(conn, command);
+        Log.log(success ? "The `pairs` table exits." : "Failed to set up the `pairs` table.");
+        return success;
     };
 }

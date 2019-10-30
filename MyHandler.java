@@ -10,7 +10,7 @@ public class MyHandler implements HttpHandler {
         URI request = t.getRequestURI();
         String query = request.getQuery();
         byte [] response = String.format("You requested \"%s\"", query).getBytes();
-        SQLite.connect();
+        //SQLite.connect();
         t.sendResponseHeaders(200, response.length);
         OutputStream os = t.getResponseBody();
         os.write(response);

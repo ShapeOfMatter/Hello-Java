@@ -3,13 +3,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;  
 import java.sql.Statement;  
 
-public interface IDBAction {
-    public boolean doWith(Connection conn);
-}
-
 public class SQLite {
 
-    public static boolean executeStatement(Connection conn, String statement) {
+    public static boolean executeStatement(Connection conn, String statement)
+    throws SQLException
+    {
         Statement s = conn.createStatement();
         s.executeUpdate(statement);
         s.close();
@@ -35,14 +33,13 @@ public class SQLite {
                 conn.rollback();
             }
             
-            conn.close();
-
         } catch (SQLException e) {
             Log.log(e.getMessage());  
         } finally {  
             try {  
-                if (conn != null && !conn.isClosed()) {  
-                    conn.close();  
+                if (conn != null) {  
+                    conn.close();
+                    Log.log("Connection to SQLite has been closed.");
                 }  
             } catch (SQLException ex) {  
                 Log.log(ex.getMessage());  
