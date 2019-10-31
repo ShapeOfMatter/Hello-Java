@@ -1,5 +1,6 @@
 import java.sql.Connection;  
 import java.sql.DriverManager;  
+import java.sql.ResultSet;
 import java.sql.SQLException;  
 import java.sql.Statement;  
 
@@ -10,6 +11,16 @@ public class SQLite {
     {
         Statement s = conn.createStatement();
         s.executeUpdate(statement);
+        s.close();
+        return true;
+    }
+    
+    public static boolean executeStatement(Connection conn, String statement, IDBResultReader reader)
+    throws SQLException
+    {
+        Statement s = conn.createStatement();
+        ResultSet r = s.executeQuery(statement);
+        reader.read(r);
         s.close();
         return true;
     }
