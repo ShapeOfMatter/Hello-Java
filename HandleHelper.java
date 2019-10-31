@@ -22,7 +22,7 @@ public class HandleHelper {
     }
 
     public static boolean success(HttpExchange t) throws IOException {
-        t.sendResponseHeaders(204, 0);
+        t.sendResponseHeaders(200, 0); //204 would be better, but seems to have weird behavior.
         OutputStream os = t.getResponseBody();
         os.close();
         return true;
