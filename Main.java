@@ -10,11 +10,12 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         //Set up the database
-        SQLite.withConnection(Database.makeTable);
+        SQLite.withConnection(Database.makeTable());
         
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-        HttpContext context = server.createContext("/", new MyHandler());
-        Log.log(context.getPath());
+        HttpContext contextGet = server.createContext("/get/", new HandleGet());
+        HttpContext contextSet = server.createContext("/set/", new HandleSet());
+        Log.log(String.format("paths: %s %s", contextGet.getPath(), contextSet.getPath()));
         
         server.setExecutor(null); // creates a default executor
         server.start();
