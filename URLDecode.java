@@ -9,7 +9,7 @@ public class URLDecode {
         try {
             return URLDecoder.decode(value, StandardCharsets.UTF_8.toString());
         } catch (UnsupportedEncodingException ex) {
-            Log.log(ex.getCause());
+            Log.log(ex.getMessage());
             return "";
         }
     }
