@@ -5,4 +5,9 @@ it's local at sqlite-jdbc-3.27.2.1.jar.
 
 The DB file will be created locally.
 
-TODO: use prepared statements so we're not wide open to injection attacks :)
+# TODO: 
+- use prepared statements so we're not wide open to injection attacks :)
+- Add some formal testing.
+- Learn modern best practice and coding standards for basically everything.
+- Comment the code.
+-
