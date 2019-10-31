@@ -42,7 +42,8 @@ public class HandleHelper {
     }
 
     public static boolean error(HttpExchange t, String message, int code) throws IOException {
-        byte [] response = String.format("Error: ", message).getBytes();
+        Log.log(message);
+        byte [] response = String.format("Error: %s", message).getBytes();
         t.sendResponseHeaders(code, response.length);
         OutputStream os = t.getResponseBody();
         os.write(response);
